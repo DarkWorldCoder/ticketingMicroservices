@@ -14,28 +14,25 @@ spec:
     spec:
       containers:
         - name: auth
-          image: 9862672975/auth
+          image: cygnetops/auth
           env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
-                
-
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: auth-srv
-
 spec:
   selector:
     app: auth
   ports:
     - name: auth
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 5000
+      targetPort: 5000

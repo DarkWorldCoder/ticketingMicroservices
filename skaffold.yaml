@@ -1,6 +1,6 @@
 apiVersion: skaffold/v2alpha3
 kind: Config
-deploy: 
+deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
@@ -13,7 +13,22 @@ build:
       docker:
         dockerfile: Dockerfile
       sync:
-        manual: 
+        manual:
           - src: 'src/**/*.ts'
             dest: .
-
+    - image: 9862672975/ticketing-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    - image: 9862672975/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

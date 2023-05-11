@@ -2,19 +2,19 @@ import mongoose from 'mongoose'
 import {app} from "./app"
 const start = async()=>{
     if(!process.env.JWT_KEY){
-        throw new Error('JWT key not found')
+        throw new Error('JWT_KEY MUST BE DEFINED')
+    }
+    if(!process.env.MONGO_URI){
+        throw new Error('MONGO URI MUST BE PROVIDED')
     }
     try{
-  await mongoose.connect('mongodb://auth-mongo-srv:27017/auth',{
-  
+    await mongoose.connect(process.env.MONGO_URI)
+    console.log('connected to db')
+    }catch(err){
+        console.log(err)
+    }
+}
+const PORT = process.env.PORT || 5000
+app.listen(PORT,()=>console.log(`Server Listening on port ${PORT}`))
 
-  })
-  console.log("Connected to database")
-}catch(err){
-    console.log(err)
-}
-app.listen(3000,()=>{
-    console.log('Listening on port 3000!!')
-})
-}
 start()
