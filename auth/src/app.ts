@@ -19,6 +19,9 @@ app.use(cookieSession({
     signed:false,
     secure:false
 }))
+app.get("/",(req,res)=>{
+    res.send("Hello World")
+})
 app.get("/all",(req,res)=>{
     console.log("hello")
     res.send("hello")

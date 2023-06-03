@@ -14,8 +14,16 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: cygnetops/tickets
+          image: 9862672975/tickets
           env:
+            - name : NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL 
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing
             - name: MONGO_URI
               value: 'mongodb://tickets-mongo-srv:27017/tickets'
             - name: JWT_KEY
@@ -34,5 +42,5 @@ spec:
   ports:
     - name: tickets
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 4000
+      targetPort: 4000
