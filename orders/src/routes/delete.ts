@@ -1,6 +1,8 @@
 import express, {Request, Response} from 'express';
 import { Order } from '../models/order';
 import { NotAuthorizedError, NotFoundError, OrderStatus } from '@eterosoft/common';
+import { natsWrapper } from '../nats-wrapper';
+import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
 
 
 const router = express.Router();
@@ -19,6 +21,16 @@ router.delete('/:orderId', async(req:Request, res:Response) => {
 
     order.status = OrderStatus.Cancelled
     await order.save()
+
+
+   new OrderCancelledPublisher(natsWrapper.client) .publish({
+    id:order.id,
+    version:order.ticket.version,
+    ticket:{
+        id:order.ticket.id
+    }
+   })
+
     res.status(204).send(order)
 
 })

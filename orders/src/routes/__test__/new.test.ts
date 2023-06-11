@@ -34,7 +34,7 @@ it("return an error if the ticket does not exist",async()=>{
 
     await request(app)
     .post("/")
-    .set("Cookie",global.signin())
+    .set("Cookie",global.signin()) 
     .send({ticketId:ticket.id})
     .expect(400)
  })
