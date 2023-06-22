@@ -3,9 +3,11 @@ import { Ticket } from '../../models/tickets'
 import { app } from '../../app'
 import { Order } from '../../models/order'
 import { OrderStatus } from '@eterosoft/common'
+import mongoose from 'mongoose'
 
 it("Marks an order as cancelled",async()=>{
     const ticket = Ticket.build({
+        id:new mongoose.Types.ObjectId().toHexString(),
         title:"Concert",
         price:20
     })

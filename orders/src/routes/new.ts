@@ -13,15 +13,16 @@ router.post('/',
 requireAuth,
 [
     body('ticketId')
-    .not()
-    .custom((input:string) => mongoose.Types.ObjectId.isValid(input))
-    .isEmpty()
-    .withMessage("Ticket must be provided")
+    // .not()
+    // .custom((input:string) => mongoose.Types.ObjectId.isValid(input))
+    // .isEmpty()
+    // .withMessage("Ticket must be provided")
 ],
 validateRequest
 ,async(req:Request, res:Response) => {
 
     const {ticketId}=req.body
+    console.log(ticketId)
 
     const ticket = await Ticket.findById(ticketId)
 
@@ -56,7 +57,7 @@ validateRequest
         id:order.id,
         status:order.status,
         userId:order.userId,
-        version:ticket.version,
+        version:order.version,
         expiresAt: order.expiresAt.toISOString(),
         ticket:{
             id:ticket.id,

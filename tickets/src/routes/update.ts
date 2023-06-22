@@ -5,6 +5,7 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorizedError,
+  BadRequestError,
 } from '@eterosoft/common';
 import { Ticket } from '../models/ticket';
 import { natsWrapper } from '../nats-wrapper';
@@ -28,7 +29,9 @@ router.put(
       throw new NotFoundError();
     }
 
-    
+    if(ticket.orderId){
+      throw new BadRequestError("Cannot edit a reserved ticket")
+    }
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
     }

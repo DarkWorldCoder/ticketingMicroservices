@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eterosoft/common": "^1.0.27",
+    "@eterosoft/common": "^1.0.30",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.14",
     "@types/jsonwebtoken": "^8.5.9",
