@@ -34,6 +34,13 @@ spec:
                 name: orders-srv 
                 port:
                   number: 4001
+          - path: /api/payments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payments-srv 
+                port:
+                  number: 4006
           - path: /(.*)
             pathType: Prefix
             backend:
