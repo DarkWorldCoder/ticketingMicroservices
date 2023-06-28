@@ -89,7 +89,7 @@ it('publishes an event', async () => {
     .set('Cookie', global.signin())
     .send({
       title,
-      price: 20,
+      price: 200,
     })
     .expect(201);
 
