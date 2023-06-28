@@ -11,7 +11,7 @@ import { natsWrapper } from '../nats-wrapper';
 const router = express.Router();
 
 router.delete(
-  '/api/orders/:orderId',
+  '/:orderId',
   requireAuth,
   async (req: Request, res: Response) => {
     const { orderId } = req.params;
