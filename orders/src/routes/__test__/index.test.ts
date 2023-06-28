@@ -1,63 +1,57 @@
-import request from 'supertest'
-import {app} from "../../app"
+import mongoose from 'mongoose';
+import request from 'supertest';
+import { app } from '../../app';
+import { Order } from '../../models/order';
+import { Ticket } from '../../models/ticket';
 
-import {Order} from "../../models/order"
-import { Ticket } from '../../models/tickets'
-import mongoose from 'mongoose'
+const buildTicket = async () => {
+  const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
+    title: 'concert',
+    price: 20,
+  });
+  await ticket.save();
 
+  return ticket;
+};
 
-const buildTicket = async()=>{
-    const ticket = Ticket.build({
-        id:new mongoose.Types.ObjectId().toHexString(),
+it('fetches orders for an particular user', async () => {
+  // Create three tickets
+  const ticketOne = await buildTicket();
+  const ticketTwo = await buildTicket();
+  const ticketThree = await buildTicket();
 
-        title:'Concert',
-        price:10
-    })
+  const userOne = global.signin();
+  const userTwo = global.signin();
+  // Create one order as User #1
+  await request(app)
+    .post('/api/orders')
+    .set('Cookie', userOne)
+    .send({ ticketId: ticketOne.id })
+    .expect(201);
 
-    await ticket.save()
-    return ticket
-}
-it('Fetches orders for an particuler user',async()=>{
+  // Create two orders as User #2
+  const { body: orderOne } = await request(app)
+    .post('/api/orders')
+    .set('Cookie', userTwo)
+    .send({ ticketId: ticketTwo.id })
+    .expect(201);
+  const { body: orderTwo } = await request(app)
+    .post('/api/orders')
+    .set('Cookie', userTwo)
+    .send({ ticketId: ticketThree.id })
+    .expect(201);
 
-     const ticketOne = await buildTicket()
-     const ticketTwo = await buildTicket()
-     const ticketThree = await buildTicket()
+  // Make request to get orders for User #2
+  const response = await request(app)
+    .get('/api/orders')
+    .set('Cookie', userTwo)
+    .expect(200);
 
-     const userOne = global.signin();
-     const userTwo = global.signin()
-
-
-     await request(app)
-     .post("/")
-     .set("Cookie", userOne)
-     .send({ticketId:ticketOne.id})
-     .expect(201)
-
-     const {body:orderOne} = await request(app)
-     .post("/")
-     .set("Cookie", userTwo)
-     .send({ticketId:ticketTwo.id})
-     .expect(201)
-
-     const {body:orderTwo} = await request(app)
-     .post("/")
-     .set("Cookie", userTwo )
-     .send({ticketId:ticketThree.id})
-     .expect(201)
-
-     const response = await request(app)
-     .get("/")
-     .set("Cookie",userTwo)
-     .expect(200)
-
-     expect(response.body.lenght).toEqual(2)
-     expect(response.body[0].id).toEqual(orderOne.id)
-     expect(response.body[1].id).toEqual(orderTwo.id)
-
-
-
-
-
-
-
-})
+  // Make sure we only got the orders for User #2
+  expect(response.body.length).toEqual(2);
+  expect(response.body[0].id).toEqual(orderOne.id);
+  expect(response.body[1].id).toEqual(orderTwo.id);
+  expect(response.body[0].ticket.id).toEqual(ticketTwo.id);
+  expect(response.body[1].ticket.id).toEqual(ticketThree.id);
+});

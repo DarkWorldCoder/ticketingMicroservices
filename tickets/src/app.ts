@@ -1,4 +1,4 @@
-import express,{Request,Response} from 'express';
+import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
@@ -18,9 +18,7 @@ app.use(
   })
 );
 app.use(currentUser);
-app.get("/hello",(req:Request,res:Response)=>{
-  console.log(req.session)
-})
+
 app.use(createTicketRouter);
 app.use(showTicketRouter);
 app.use(indexTicketRouter);

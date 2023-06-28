@@ -1,6 +1,5 @@
-import { Subjects,Publisher,OrderCreatedEvent, OrderCancelledEvent } from "@eterosoft/common";
+import { Publisher, OrderCreatedEvent, Subjects } from '@eterosoft/common';
 
-export class OrderCreatedublisher extends Publisher<OrderCreatedEvent>{
-    subject:Subjects.OrderCreated = Subjects.OrderCreated
-    
+export class OrderCreatedPublisher extends Publisher<OrderCreatedEvent> {
+  subject: Subjects.OrderCreated = Subjects.OrderCreated;
 }

@@ -2,8 +2,9 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { requireAuth, validateRequest } from '@eterosoft/common';
 import { Ticket } from '../models/ticket';
-import { natsWrapper } from '../nats-wrapper';
 import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
+import { natsWrapper } from '../nats-wrapper';
+
 const router = express.Router();
 
 router.post(
@@ -26,12 +27,12 @@ router.post(
     });
     await ticket.save();
     new TicketCreatedPublisher(natsWrapper.client).publish({
-      id:ticket.id,
-      version:ticket.version,
+      id: ticket.id,
       title: ticket.title,
-      price:ticket.price,
+      price: ticket.price,
       userId: ticket.userId,
-    })
+      version: ticket.version,
+    });
 
     res.status(201).send(ticket);
   }

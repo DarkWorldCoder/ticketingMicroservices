@@ -1,8 +1,5 @@
-import { Publisher, Subjects,TicketUpdatedEvent} from "@eterosoft/common";
+import { Publisher, Subjects, TicketUpdatedEvent } from '@eterosoft/common';
 
-export class TicketUpdatedPublisher extends Publisher<TicketUpdatedEvent>{
-    subject:Subjects.TicketUpdated = Subjects.TicketUpdated
-
-    
-
+export class TicketUpdatedPublisher extends Publisher<TicketUpdatedEvent> {
+  subject: Subjects.TicketUpdated = Subjects.TicketUpdated;
 }

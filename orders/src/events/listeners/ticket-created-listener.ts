@@ -1,28 +1,22 @@
-import { Message } from "node-nats-streaming";
+import { Message } from 'node-nats-streaming';
+import { Subjects, Listener, TicketCreatedEvent } from '@eterosoft/common';
+import { Ticket } from '../../models/ticket';
+import { queueGroupName } from './queue-group-name';
 
-import { Subjects,Listener,TicketCreatedEvent } from "@eterosoft/common";
-import {Ticket} from "../../models/tickets"
-import { queueGroupName } from "./queue-groupname";
+export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
+  subject: Subjects.TicketCreated = Subjects.TicketCreated;
+  queueGroupName = queueGroupName;
 
+  async onMessage(data: TicketCreatedEvent['data'], msg: Message) {
+    const { id, title, price } = data;
 
-export class TicketCreatedListener extends Listener<TicketCreatedEvent>{
+    const ticket = Ticket.build({
+      id,
+      title,
+      price,
+    });
+    await ticket.save();
 
-
-        subject:Subjects.TicketCreated = Subjects.TicketCreated
-        queueGroupName=queueGroupName
-        async onMessage(data: TicketCreatedEvent['data'], msg: Message){
-        const {id,title,price}= data;
-        const ticket = Ticket.build({
-            title,
-            price,
-            id
-
-        })
-
-        await ticket.save()
-
-        msg.ack()
-        }
-
+    msg.ack();
+  }
 }
-

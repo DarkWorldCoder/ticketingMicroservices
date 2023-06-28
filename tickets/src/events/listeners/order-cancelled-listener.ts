@@ -1,8 +1,8 @@
+import { Listener, OrderCancelledEvent, Subjects } from '@eterosoft/common';
 import { Message } from 'node-nats-streaming';
 import { queueGroupName } from './queue-group-name';
 import { Ticket } from '../../models/ticket';
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
-import { Listener, OrderCancelledEvent, Subjects } from '@eterosoft/common';
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   subject: Subjects.OrderCancelled = Subjects.OrderCancelled;
