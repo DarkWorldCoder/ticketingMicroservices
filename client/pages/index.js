@@ -1,25 +1,41 @@
+import Link from 'next/link';
 
-import buildClient from 'api/build-client'
-import styles from '../styles/Home.module.css'
-import Head from 'next/head'
-const  Home = ({currentUser})=> {
-    
-  return currentUser?(
-    <h1>You are signed in</h1>
-  ):(
-    <h2>you are not signed in</h2>
-  )
-}
+const LandingPage = ({ currentUser, tickets }) => {
+  const ticketList = tickets.map((ticket) => {
+    return (
+      <tr key={ticket.id}>
+        <td>{ticket.title}</td>
+        <td>{ticket.price}</td>
+        <td>
+          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
+            View
+          </Link>
+        </td>
+      </tr>
+    );
+  });
 
-Home.getInitialProps = async(context)=>{
-  const {data} = await buildClient(context).get("/api/users/currentuser")
-  
-  if (data){
-    return data
-  }else{
-    return {}
-  }
+  return (
+    <div>
+      <h1>Tickets</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>{ticketList}</tbody>
+      </table>
+    </div>
+  );
+};
 
-}
+LandingPage.getInitialProps = async (context, client, currentUser) => {
+  const { data } = await client.get('/api/tickets');
 
-export default Home
+  return { tickets: data };
+};
+
+export default LandingPage;
