@@ -13,29 +13,30 @@ declare global {
 jest.mock('../nats-wrapper');
 
 let mongo: any;
-beforeAll(async () => {
-  process.env.JWT_KEY = 'asdfasdf';
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+beforeAll(async()=>{
+  process.env.JWT_KEY = 'asdf'
+  mongo = await MongoMemoryServer.create()
+  
+  const mongoUri = await mongo.getUri()
 
-  mongo = new MongoMemoryServer();
-  const mongoUri = await mongo.getUri();
+  await mongoose.connect(mongoUri)
 
-  await mongoose.connect(mongoUri);
-});
 
-beforeEach(async () => {
-  jest.clearAllMocks();
+})
+
+beforeEach(async()=>{
   const collections = await mongoose.connection.db.collections();
 
-  for (let collection of collections) {
-    await collection.deleteMany({});
+  for (let collection of collections){
+      await collection.deleteMany({})
   }
-});
+})
 
-afterAll(async () => {
-  await mongo.stop();
-  await mongoose.connection.close();
-});
+afterAll(async()=>{
+  await mongo.stop()
+  await mongoose.connection.close()
+})
+
 
 global.signin = () => {
   // Build a JWT payload.  { id, email }
