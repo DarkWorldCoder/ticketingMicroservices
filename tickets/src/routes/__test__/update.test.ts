@@ -131,7 +131,7 @@ it('rejects updates if the ticket is reserved', async () => {
   const cookie = global.signin();
 
   const response = await request(app)
-    .post('/api/tickets')
+    .post('/')
     .set('Cookie', cookie)
     .send({
       title: 'asldkfj',
@@ -143,7 +143,7 @@ it('rejects updates if the ticket is reserved', async () => {
   await ticket!.save();
 
   await request(app)
-    .put(`/api/tickets/${response.body.id}`)
+    .put(`/${response.body.id}`)
     .set('Cookie', cookie)
     .send({
       title: 'new title',
