@@ -5,7 +5,7 @@ const start = async()=>{
         throw new Error('JWT_KEY MUST BE DEFINED')
     }
     if(!process.env.MONGO_URI){
-        throw new Error('MONGO URI MUST BE PROVIDED')
+        throw new Error('MONGO URI MUST BE PROVIDED here')
     }
     try{
     await mongoose.connect(process.env.MONGO_URI)
@@ -15,6 +15,6 @@ const start = async()=>{
     }
 }
 const PORT = process.env.PORT || 5000
-app.listen(PORT,()=>console.log(`Server Listening on port ${PORT}`))
+app.listen(PORT,()=>console.log(`Server Listening on ports ${PORT}`))
 
 start()
