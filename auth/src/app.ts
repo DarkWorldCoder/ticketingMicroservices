@@ -20,7 +20,7 @@ app.use(cookieSession({
     secure:false
 }))
 app.get("/",(req,res)=>{
-    res.send("Hello World now")
+    res.send("Hello Worsld now")
 })
 app.get("/all",(req,res)=>{
     console.log("hello")
