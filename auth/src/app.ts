@@ -23,7 +23,7 @@ app.get("/",(req,res)=>{
     res.send("Hello World nowis the time")
 })
 app.get("/all",(req,res)=>{
-    console.log("hello")
+    console.log("hellso")
     res.send("hello")
 })
 app.use(currentUserRouter)
