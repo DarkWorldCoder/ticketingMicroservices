@@ -5,7 +5,7 @@ const start = async()=>{
         throw new Error('JWT_KEY MUST BE DEFINED')
     }
     if(!process.env.MONGO_URI){
-        throw new Error('MONGO URI MUST BE PROVIDED here')
+        throw new Error('MONGO URI MUST BE PROVdIDED here')
     }
     try{
     await mongoose.connect(process.env.MONGO_URI)
