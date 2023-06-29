@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-    
+      - uses: Azure/setup-kubectl@v3
       - uses: Azure/cli@v1.0.7
         with:
           inlineScript: |
@@ -18,6 +18,6 @@ jobs:
 
             az account set --subscription 0da334f4-52ae-4bac-b064-c0db2d549c0b
             az aks get-credentials --resource-group ticketing_group --name ticketing
-            kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
+      - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
       
         
