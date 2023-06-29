@@ -17,5 +17,6 @@ jobs:
             az login -u "0364830@sd.taylors.edu.my" -p "Ayu$h0602"
             az account set --subscription 0da334f4-52ae-4bac-b064-c0db2d549c0b
             az aks get-credentials --resource-group ticketing_group --name ticketing
-      - run: kubectl apply -f infra/k8s
+      - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
+      
         
