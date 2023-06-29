@@ -9,6 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 # data
 #final
+#da
 spec:
   rules:
     - host: ticketing.dev
