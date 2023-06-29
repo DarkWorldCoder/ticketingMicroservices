@@ -22,7 +22,7 @@ const setup = async () => {
     id: ticket.id,
     version: ticket.version + 1,
     title: 'new concert',
-    price: 999,
+    price: 9998,
     userId: 'ablskdjf',
   };
 
