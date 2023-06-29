@@ -1,31 +1,22 @@
-name: deploy-auths
+name: deploy-manifests
 on:
   push:
     branches:
       - master
     paths:
-      - "auth/**"
+      - "infra/**"
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd auth && docker build -t 9862672975/auth .
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        env:
-            DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      - run: docker push 9862672975/auth
+    
       - uses: Azure/cli@v1.0.7
         with:
           inlineScript: |
             az login -u "0364830@sd.taylors.edu.my" -p "Ayu$h0602"
             az account set --subscription 0da334f4-52ae-4bac-b064-c0db2d549c0b
             az aks get-credentials --resource-group ticketing_group --name ticketing
-      - run: kubectl rollout restart deployment auth-depl
-        
-
-          
-          
+      - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
       
-   
+        
