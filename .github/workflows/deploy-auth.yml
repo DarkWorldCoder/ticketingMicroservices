@@ -20,10 +20,10 @@ jobs:
         with:
           inlineScript: |
             az login -u 0364830@sd.taylors.edu.my -p 'Ayu$h0602'
-
+            az aks install-cli
             az account set --subscription 0da334f4-52ae-4bac-b064-c0db2d549c0b
             az aks get-credentials --resource-group ticketing_group --name ticketing
-      - run: kubectl rollout restart deployment auth-depl
+            kubectl rollout restart deployment auth-depl
         
 
           
