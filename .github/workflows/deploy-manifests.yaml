@@ -13,7 +13,7 @@ jobs:
       - uses: Azure/setup-kubectl@v3
       - uses: Azure/cli@v1.0.7
         with:
-          inlineScript:
+          inlineScript: |
             az login -u 0364830@sd.taylors.edu.my -p 'Ayu$h0602'
             az aks install-cli
             az account set --subscription 0da334f4-52ae-4bac-b064-c0db2d549c0b
