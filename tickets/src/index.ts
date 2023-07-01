@@ -44,7 +44,7 @@ const start = async () => {
   }
 
   app.listen(4000, () => {
-    console.log('Listenging on port 4000!yahu!!!!!!!');
+    console.log('Listenging on port 4000!yahu!!');
   });
 };
 
