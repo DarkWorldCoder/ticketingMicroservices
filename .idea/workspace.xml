@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38f550c0-75b0-4de7-9146-4c6324a044a8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/hooks/use-request.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/use-request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common" beforeDir="false" afterPath="$PROJECT_DIR$/common" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/orders/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/orders/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/events/listeners/expiration-complete-listener.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/events/listeners/expiration-complete-listener.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/payments/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/src/events/publishers/payment-created-publisher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/payments/src/events/publishers/payment-created-publisher.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/src/routes/__test__/new.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/payments/src/routes/__test__/new.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/src/routes/new.ts" beforeDir="false" afterPath="$PROJECT_DIR$/payments/src/routes/new.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tickets/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tickets/package-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="38f550c0-75b0-4de7-9146-4c6324a044a8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,8 +20,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/ayushniroula/Desktop/Projects/ticketingMicroservices",
+    "last_opened_file_path": "/home/ayushniroula/Desktop/Projects/java/helpdesk",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/home/ayushniroula/Desktop/Projects/ticketingMicroservices/orders/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -48,6 +37,7 @@
       <option name="presentableId" value="Default" />
       <updated>1687928443539</updated>
       <workItem from="1687928444754" duration="29000" />
+      <workItem from="1688197595471" duration="167000" />
     </task>
     <servers />
   </component>
