@@ -12,7 +12,7 @@ metadata:
 #da
 spec:
   rules:
-    - host: ticketing.dev
+    - host: www.ticketbook.me
       http:
         paths:
           - path: /api/users/(.*)
