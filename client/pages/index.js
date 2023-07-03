@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HeroSection from '../components/Hero/HeroSection';
 
 const LandingPage = ({ currentUser, tickets }) => {
   const ticketList = tickets.map((ticket) => {
@@ -16,25 +17,26 @@ const LandingPage = ({ currentUser, tickets }) => {
   });
 
   return (
-    <div>
-      <h1>Tickets</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>{ticketList}</tbody>
-      </table>
-    </div>
+    <HeroSection />
+    // <div>
+    //   <h1>Tickets</h1>
+    //   <table className="table">
+    //     <thead>
+    //       <tr>
+    //         <th>Title</th>
+    //         <th>Price</th>
+    //         <th>Link</th>
+    //       </tr>
+    //     </thead>
+    //     <tbody>{ticketList}</tbody>
+    //   </table>
+    // </div>
   );
 };
 
 LandingPage.getInitialProps = async (context, client, currentUser) => {
   const { data } = await client.get('/api/tickets');
-
+  // const data = []
   return { tickets: data };
 };
 

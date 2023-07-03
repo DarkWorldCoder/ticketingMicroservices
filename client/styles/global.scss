@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+
+html{
+    scroll-behavior: smooth;
+    min-height: 100%;
+    width: 100%;
+    background-color: var(--bg-color);
+    color: var(--color-e0);
+}
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: var(--primary-font);
+    --sign-in: linear-gradient(118deg, rgba(142,142,238,0.8492647058823529) 0%, rgba(164,160,230,0.9641106442577031) 100%);;
+
+&::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px var(--bg-secondary);
+  border-radius: 5px;
+  opacity:.3;
+  /* background-color: #F5F5F5; */
+}
+
+&::-webkit-scrollbar
+{
+  width: 7px;
+  height:7px;
+ 
+}
+
+
+&::-webkit-scrollbar-thumb
+{
+  border-radius: 7px;
+  -webkit-box-shadow: inset 0 0 6px var(--bg-secondary);
+
+  background-color: #555;
+}
+
+@media (max-width:768px) {
+    &::-webkit-scrollbar
+{
+  display: none;
+}
+    
+}
+ 
+}
+body{
+    width: 100%;
+    height:100%;
+    overflow: auto;
+    @media (max-width:400px) {
+        h2{
+            font-size: 16px
+        }
+        h3{
+            font-size: 14px;
+        }
+        
+    }
+}
+h1,h2,h3,h4{
+    font-weight: 600;
+}
+#__next{
+    width: 100%;
+    
+    height: 100%;
+    
+}
+
+:root{
+
+    //Font 
+    --primary-font: 'Inter', sans-serif;
+    --secondary-font:'Open Sans', sans-serif;
+
+    --bg-color:#02071c;
+    // Primary Colors 
+
+    --main-color:#7b61fa;
+    --icon-color:#6653c8;
+    --primary-color:linear-gradient(135deg, rgba(130,120,241,0.8492647058823529) 0%, rgba(129,133,230,0.9641106442577031) 100%);
+    
+
+    // extended colors
+      // extended color
+  --color-e0:#E5FFF4;
+  --color-e1:#40CA99;
+  --color-e3:#FFEAF1;
+  --color-e4:#D1305A;
+}
