@@ -1,0 +1,62 @@
+.navbar_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 111;
+  padding: 16px 50px;
+  border-bottom: 2px solid #1b1c3d;
+}
+
+.nav_left {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.nav_left h2 {
+  font-weight: 500;
+  font-family: "Rubik Bubbles";
+  color: rgb(237, 237, 237);
+  font-size: 24px;
+}
+.nav_left p {
+  font-size: 16px;
+  font-family: var(--secondary-font);
+  color: rgb(197, 197, 197);
+}
+
+.nav_mid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.nav_mid .nav_items {
+  font-size: 18px;
+  font-family: var(--secondary-font);
+  cursor: pointer;
+}
+.nav_mid .active_menu {
+  font-weight: bold;
+  color: var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+}
+
+.nav_end {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.nav_end .nav_login {
+  font-size: 18px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.nav_end .nav_signup {
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}/*# sourceMappingURL=Navbar.module.css.map */

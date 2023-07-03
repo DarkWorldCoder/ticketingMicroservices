@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./Navbar.module.scss"
+import styles from "./Navbar.module.css"
 const Navbar = () => {
   return (
     <div className={`${styles.navbar_wrapper}`}>

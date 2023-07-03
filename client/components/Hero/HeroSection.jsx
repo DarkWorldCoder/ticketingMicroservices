@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./HeroSection.module.scss"
+import styles from "./HeroSection.module.css"
 const HeroSection = () => {
   return (
     <div className={`${styles.hero}`}>
