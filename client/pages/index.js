@@ -2,19 +2,7 @@ import Link from 'next/link';
 import HeroSection from '../components/Hero/HeroSection';
 
 const LandingPage = ({ currentUser, tickets }) => {
-  const ticketList = tickets.map((ticket) => {
-    return (
-      <tr key={ticket.id}>
-        <td>{ticket.title}</td>
-        <td>{ticket.price}</td>
-        <td>
-          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
-            View
-          </Link>
-        </td>
-      </tr>
-    );
-  });
+  console.log(tickets)
 
   return (
     <HeroSection />
@@ -36,7 +24,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 
 LandingPage.getInitialProps = async (context, client, currentUser) => {
   const { data } = await client.get('/api/tickets');
-  
+  console.log(data)
   return { tickets: data };
 };
 
