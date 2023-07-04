@@ -1,11 +1,15 @@
 import Link from 'next/link';
 import HeroSection from '../components/Hero/HeroSection';
+import FeatureSection from '../components/FeatureSection/FeatureSection';
 
 const LandingPage = ({ currentUser, tickets }) => {
   console.log(tickets)
 
   return (
+    <>
     <HeroSection />
+    <FeatureSection />
+    </>
     // <div>
     //   <h1>Tickets</h1>
     //   <table className="table">
@@ -24,7 +28,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 
 LandingPage.getInitialProps = async (context, client, currentUser) => {
   const { data } = await client.get('/api/tickets');
-  console.log(data)
+  // const data = []
   return { tickets: data };
 };
 

@@ -1,0 +1,30 @@
+.main_container{
+    padding: 40px 80px;
+    width: 100%;
+}
+.card_container{
+    background-color: rgba(1,27,51,255);
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #32485e;
+
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    h1{
+        font-size: 40px;
+        font-family: var(--secondary-font);
+        font-weight: bold;
+    }
+    p{
+        color: rgb(219, 219, 219);
+    }
+}
+.card_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+}

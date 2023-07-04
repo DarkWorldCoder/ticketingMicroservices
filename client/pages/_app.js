@@ -1,7 +1,7 @@
 import buildClient from '../api/build-client';
 import Navbar from '../components/Navbar/Navbar';
 import Header from '../components/header';
-import "../styles/global.css"
+import "../styles/global.scss"
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
@@ -17,6 +17,7 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
 AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
   const { data } = await client.get('/api/users/currentuser');
+  // const data = {}
   let pageProps = {};
   if (appContext.Component.getInitialProps) {
     pageProps = await appContext.Component.getInitialProps(

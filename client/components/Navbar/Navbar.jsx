@@ -1,6 +1,12 @@
 import React from 'react'
-import styles from "./Navbar.module.css"
+import styles from "./Navbar.module.scss"
+import {useRouter} from "next/router" 
 const Navbar = () => {
+  const router = useRouter()
+  
+  const pushToLink = (url)=>{
+    router.push(`/${url}`)
+  }
   return (
     <div className={`${styles.navbar_wrapper}`}>
         <div className={`${styles.nav_left}`}>
@@ -18,18 +24,20 @@ const Navbar = () => {
             <div className={`${styles.nav_items}`}>
                 My Orders
             </div>
-            <div className={`${styles.nav_items}`}>
-                Events
-            </div>
+            
             <div className={`${styles.nav_items}`}>
                 Blogs
             </div>
         </div>
         <div className={`${styles.nav_end}`}>
-            <div className={`${styles.nav_login}`}>
+            <div 
+            onClick={()=>pushToLink("/auth/signin")}
+            className={`${styles.nav_login}`}>
                 Login
             </div>
-            <div className={`${styles.nav_signup}`}>
+            <div 
+            onClick={()=>pushToLink("/auth/signup")}
+            className={`${styles.nav_signup}`}>
                 Sign Up
             </div>
         </div>

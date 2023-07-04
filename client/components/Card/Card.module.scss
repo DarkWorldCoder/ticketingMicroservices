@@ -1,0 +1,41 @@
+.card_container{
+    padding: 10px;
+    width: 250px;
+    margin-top: 10px;
+    border: 2px solid #32485e;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 5px;
+    img{
+        width: 100%;
+        object-fit: cover;
+        height: 200px;
+    }
+    p{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    h2{
+        font-size: 24px;
+    }
+    h4{
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .book_now{
+        background-color: white;
+        color: black;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all .2a cubic-bezier(0.075, 0.82, 0.165, 1) ease;
+        &:hover{
+            transform: scale(1.03);
+        }
+
+    }
+}
