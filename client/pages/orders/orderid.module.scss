@@ -1,0 +1,55 @@
+.order_container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.expired{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:10px;
+    .order_expired{
+        font-size: 30px;
+        font-weight: bold;
+
+    }
+    button{
+        outline:none;
+        border: none;
+        background-color: var(--main-color);
+        font-weight: bold;
+        color: white;
+        padding: 10px;
+        width: 200px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+.timer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    .time{
+        border: 2px solid white;
+        padding: 10px;
+        display: flex;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+        span{
+            font-size: 34px;
+        }
+    }
+    h3{
+       font-size: 24px;
+       font-weight: 500;
+    }
+  
+}
+
+

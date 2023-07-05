@@ -1,7 +1,9 @@
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
-
+import Card from '../../components/Card/Card';
+import styles from "./ticketid.module.scss"
 const TicketShow = ({ ticket }) => {
+
   const { doRequest, errors } = useRequest({
     url: '/api/orders',
     method: 'post',
@@ -12,12 +14,15 @@ const TicketShow = ({ ticket }) => {
       Router.push('/orders/[orderId]', `/orders/${order.id}`),
   });
 
+
   return (
-    <div>
-      <h1>{ticket.title}</h1>
-      <h4>Price: {ticket.price}</h4>
+    <div className={`${styles.order_now}`}>
+      <h1>Purchase Queue</h1>
+      <Card
+      details={true}
+      ticket={ticket}/>
       {errors}
-      <button onClick={() => doRequest()} className="btn btn-primary">
+      <button onClick={() => doRequest()} className={`${styles.button}`}>
         Purchase
       </button>
     </div>

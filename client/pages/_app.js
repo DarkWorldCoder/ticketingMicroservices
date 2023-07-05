@@ -5,7 +5,7 @@ import "../styles/global.scss"
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <Navbar />
+      <Navbar currentUser={currentUser} />
       {/* <Header currentUser={currentUser} /> */}
       <div className="container">
         <Component currentUser={currentUser} {...pageProps} />

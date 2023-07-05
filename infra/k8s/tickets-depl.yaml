@@ -26,6 +26,12 @@ spec:
               value: ticketing
             - name: MONGO_URI
               value: 'mongodb://tickets-mongo-srv:27017/tickets'
+            - name: CLOUDINARY_API_KEY
+              value: "416529793865753"
+            - name: CLOUDINARY_SECRET 
+              value: "vkWeACucGKBhI64IODHVqQgepNI"
+            - name: CLOUDINARY_URL
+              value: "cloudinary://416529793865753:vkWeACucGKBhI64IODHVqQgepNI@ayushniroula" 
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

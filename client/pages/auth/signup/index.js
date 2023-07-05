@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
-import useRequest from '../../hooks/use-request';
-
+import useRequest from '../../../hooks/use-request';
+import styles from "./index.module.scss"
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,9 +22,11 @@ export default () => {
   };
 
   return (
+    <div className={`${styles.main_container}`}>
     <form onSubmit={onSubmit}>
       <h1>Sign Up</h1>
-      <div className="form-group">
+      <hr></hr>
+      <div className={`${styles.input_container}`}>
         <label>Email Address</label>
         <input
           value={email}
@@ -32,7 +34,7 @@ export default () => {
           className="form-control"
         />
       </div>
-      <div className="form-group">
+      <div className={`${styles.input_container}`}>
         <label>Password</label>
         <input
           value={password}
@@ -42,7 +44,8 @@ export default () => {
         />
       </div>
       {errors}
-      <button className="btn btn-primary">Sign Up</button>
+      <button className={`${styles.button}`}>Sign Up</button>
     </form>
+    </div>
   );
 };

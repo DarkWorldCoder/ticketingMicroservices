@@ -11,7 +11,7 @@ import { showOrderRouter } from './routes/show';
 
 const app = express();
 app.set('trust proxy', true);
-app.use(json());
+app.use(json({limit: '50mb'}));
 app.use(
   cookieSession({
     signed: false,

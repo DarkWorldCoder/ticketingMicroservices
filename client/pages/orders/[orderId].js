@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
-
+import styles from "./orderid.module.scss"
 const OrderShow = ({ order, currentUser }) => {
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState({
+    second:0,
+    minute:0
+  });
+  const [expires,setExpires] = useState(false)
   const { doRequest, errors } = useRequest({
     url: '/api/payments',
     method: 'post',
@@ -17,7 +21,18 @@ const OrderShow = ({ order, currentUser }) => {
   useEffect(() => {
     const findTimeLeft = () => {
       const msLeft = new Date(order.expiresAt) - new Date();
-      setTimeLeft(Math.round(msLeft / 1000));
+      var countDownDate = new Date().getTime() + (msLeft); 
+      var distance =countDownDate -  new Date().getTime()
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      setTimeLeft({
+        second:seconds,
+        minute:minutes
+      })
+      if(distance<0){
+        setExpires(true)
+      }
+
     };
 
     findTimeLeft();
@@ -28,20 +43,38 @@ const OrderShow = ({ order, currentUser }) => {
     };
   }, [order]);
 
-  if (timeLeft < 0) {
-    return <div>Order Expired</div>;
-  }
+ 
 
   return (
-    <div>
-      Time left to pay: {timeLeft} seconds
-      <StripeCheckout
-        token={({ id }) => doRequest({ token: id })}
-        stripeKey="pk_test_JMdyKVvf8EGTB0Fl28GsN7YY"
-        amount={order.ticket.price * 100}
-        email={currentUser.email}
-      />
-      {errors}
+    <div className={`${styles.order_container}`}>
+    {expires?
+    <div className={`${styles.expired}`}>
+    <div className={`${styles.order_expired}`}>OOPS !Order Expired</div>
+    <button
+    onClick={()=>Router.push("/")}
+    >Go Back</button>
+    </div>
+    :
+    <div className={`${styles.timer}`}>
+      <div className={`${styles.time}`}>
+
+      <span>{timeLeft.minute} m : {timeLeft.second}s </span>
+      </div>
+   
+    <h3>Time is Ticking. Please Pay fast to save the seat</h3>
+    <StripeCheckout
+     
+      token={({ id }) => doRequest({ token: id })}
+
+      
+      stripeKey="pk_test_51I05egGtTrJWux9OqUwbjxYdT3TacczJOPfQOen4PjZaqefk9XDQcPDpkTjNmu38LLaqT2RtJ7NvpyuHJ3lAC8rR00lOyfXUvj"
+      amount={order.ticket.price * 100}
+      email={currentUser.email}
+    />
+    {errors}
+  </div>
+  }
+   
     </div>
   );
 };

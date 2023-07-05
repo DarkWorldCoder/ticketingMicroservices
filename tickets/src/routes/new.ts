@@ -4,6 +4,7 @@ import { requireAuth, validateRequest } from '@eterosoft/common';
 import { Ticket } from '../models/ticket';
 import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
 import { natsWrapper } from '../nats-wrapper';
+import cloudinary from '../utils/cloudinary';
 
 const router = express.Router();
 
@@ -18,11 +19,19 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { title, price } = req.body;
+    // console.log(req.body)
+    const { title, price,location,image } = req.body;
+    
+  
+    const upload_response = await cloudinary.v2.uploader.upload(image, {
+      upload_preset: `profile_pic`,
+    });
 
     const ticket = Ticket.build({
       title,
       price,
+      location,
+      imageUrl:upload_response.url,
       userId: req.currentUser!.id,
     });
     await ticket.save();
@@ -32,6 +41,8 @@ router.post(
       price: ticket.price,
       userId: ticket.userId,
       version: ticket.version,
+      location: ticket.location,
+      imageUrl: upload_response.url
     });
 
     res.status(201).send(ticket);

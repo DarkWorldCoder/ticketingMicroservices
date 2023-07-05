@@ -23,11 +23,12 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { token, orderId } = req.body;
-
+    
+    console.log(process.env.STRIPE_KEY)
+    console.log(token,orderId)
     const order = await Order.findById(orderId);
-
     if (!order) {
-      throw new NotFoundError();
+    throw new NotFoundError();
     }
     if (order.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();

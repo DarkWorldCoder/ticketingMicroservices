@@ -1,15 +1,22 @@
 import React from 'react'
 import styles from "./Card.module.scss"
-const Card = () => {
+import  Router  from 'next/router'
+const Card = ({ticket,details}) => {
+  
   return (
     <div className={`${styles.card_container}`}>
-        <img src="https://nypost.com/wp-content/uploads/sites/2/2022/11/Ed-Sheeran.jpg?quality=75&strip=all&w=744" />
-        <p>$300</p>
-        <h2>Ed sheeran: Olive</h2>
-        <h4>Washington</h4>
-        <div className={`${styles.book_now}`}>
-            Book Now
-        </div>
+        <img src={ticket.imageUrl} />
+        <p>${ticket.price}</p>
+        <h2>{ticket.title}</h2>
+        <h4>{ticket.location}</h4>
+        {!details &&
+         <div 
+         onClick={()=>Router.push( `/tickets/${ticket.id}`)}
+         className={`${styles.book_now}`}>
+             Book Now
+         </div>
+        }
+       
     </div>
   )
 }

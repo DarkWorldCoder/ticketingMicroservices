@@ -1,0 +1,23 @@
+.order_now{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+    background-color: var(--main-color);
+    color: white;
+    padding: 10px;
+    width: 260px;
+    cursor: pointer;
+    margin-top: 5px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover{
+        transform: scale(1.02);
+    }
+}
